@@ -1,0 +1,221 @@
+@font-face {
+    font-family: Creepy;
+    src: url(../Assets/Fonts/Creepy.woff);
+}
+
+@font-face {
+    font-family:Lunacy ;
+    src: url(../Assets/Fonts/Lunacy.woff);
+}
+
+html{
+    margin: 0;
+    padding: 0;
+    cursor: url(../Assets/Cursors/Ghost.cur),auto;
+}
+
+body{
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background: radial-gradient(#c37003,#563001);
+}
+
+
+.main-container h1{
+    font-family: Creepy;
+    font-size: 5rem;
+    color:#ff6d00;
+}
+
+.game-info{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size:40px;
+    font-family: Lunacy;
+    color: #db9a68;
+}
+
+.overlay-text{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 100;
+    font-size: 7rem;
+    font-family: Creepy;
+}
+
+.overlay-text.visible{
+    display: flex;
+    color: #ff6d00;
+    animation: overlay-grow 500ms forwards;
+}
+
+
+.overlay-text .Small{
+    font-size: 3rem;
+}
+
+@keyframes overlay-grow {
+    
+    from{
+        background-color: rgb(0,0,0,0);
+        font-size: 0;
+    }
+    to{
+        background-color: rgb(0,0,0,0.8);
+        font-size: 7rem;
+    }
+}
+
+.card-container{
+    display: grid;
+    grid-template-columns: repeat(4,auto);
+    grid-gap: 10px;
+    perspective: 500px;
+    cursor: url(../Assets/Cursors/GhostHover.cur),auto;
+    justify-content: center;
+    
+}
+
+.card{
+    height: 130px;
+    width: 90px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.card.matched .icon{
+    animation: dance 1s linear infinite 500ms;
+}
+
+@keyframes dance {
+    0%,100%{
+        transform: rotate(0deg);
+    }
+    25%{
+        transform: rotate(-30deg);
+    }
+    75%{
+        transform: rotate(30deg);
+    }
+    
+}
+
+.card-face{
+    height: 98%;
+    width: 98%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    backface-visibility:hidden;
+    border-radius: 10px;
+    border-width: 2px;
+    border-style: solid;
+    transition: transform ease-in-out 500ms;
+}
+
+.card-back{
+    background-color: black;
+    border-color: orange;
+}
+
+.cob-web{
+    position: absolute;
+    height: 32px;
+    width: 32px;
+    transition: all ease-in-out 100ms;
+}
+
+.card-face:hover .cob-web{
+    height: 37px;
+    width: 37px;
+}
+
+.web-top-left{
+    transform: rotate(270deg);
+    top: 0;
+    left: 0;
+}
+.web-top-right{
+    top: 0;
+    right: 0;
+}
+
+.web-bottom-left{
+    transform: rotate(180deg);
+    bottom: 0;
+    left: 0;
+}
+.web-bottom-right{
+    transform: rotate(90deg);
+    bottom: 0;
+    right: 0;
+}
+
+.spider{
+    position: absolute;
+    height: 90px;
+    transform: translateY(-25px);
+    transition: all ease-in-out 100ms;
+}
+
+.card-back:hover .spider{
+    height: 100px ;
+}
+
+.card-front{
+    transform: rotateY(180deg);
+    background-color: #bf9258 ;
+}
+
+.card.visible .card-back{
+    transform: rotateY(180deg);
+}
+
+.card.visible .card-front{
+    transform: rotateY(0);
+}
+
+.icon{
+    max-width: 55px;
+    transition: all ease-in-out 100ms;
+}
+
+.card-front:hover .icon{
+    max-width: 65px;
+}
+
+.Reset-Bttn{
+    margin-top: 2rem;
+    background-color: rgb(141, 0, 0);
+    color: white;
+    font-weight: 500;
+    padding: 5px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-family: cursive;
+}
+
+@media(max-width: 600px) {
+    .card-container{
+        grid-template-columns: repeat(2,auto);
+        align-items: center;
+        justify-content: center;
+    }
+}
